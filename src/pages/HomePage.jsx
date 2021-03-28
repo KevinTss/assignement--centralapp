@@ -1,13 +1,13 @@
 import Layout from "../components/layout";
 
 import { StyledPageContainer } from "../styles";
-import Search from "../components/search";
+import HomeHeader from "../components/home-header";
 
 const HomePage = () => {
   return (
     <Layout>
       <StyledPageContainer>
-        <Search />
+        <HomeHeader />
       </StyledPageContainer>
     </Layout>
   );

@@ -7,7 +7,7 @@ import { Input } from "../ui";
 
 const Search = () => {
   const [results, setResults] = useState([]);
-  console.log("ok", Input);
+
   const onSearch = debounce(({ target: { value } }) => {
     const query = {
       language: "en",
