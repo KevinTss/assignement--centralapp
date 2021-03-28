@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import debounce from "lodash.debounce";
+import queryString from "query-string";
 
-function App() {
+import api from "./api";
+
+const App = () => {
+  const [results, setResults] = useState([]);
+
+  const onSearch = debounce(({ target: { value } }) => {
+    console.log("kok", value);
+    const query = {
+      language: "en",
+      level: "L0",
+      name: value,
+    };
+
+    if (value.length >= 3) {
+      api.get(`categories/like?${queryString.stringify(query)}`).then((r) => {
+        setResults([...r.data.map((el) => ({ name: el.name, path: el.path }))]);
+      });
+    }
+  }, 500);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input onChange={onSearch} />
+      <div>{JSON.stringify(results)}</div>
     </div>
   );
-}
+};
 
 export default App;
