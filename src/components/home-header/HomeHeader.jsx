@@ -3,11 +3,11 @@ import Search from "../search";
 import { Title, Image } from "../ui";
 import illustrationUrl from "../../assets/finder-illustration.svg";
 
-const HomeHeader = () => (
+const HomeHeader = ({ saveItem, removeItem }) => (
   <StyledContainer>
     <StyledLeftBox>
       <Title>Search all you need</Title>
-      <Search />
+      <Search saveItem={saveItem} removeItem={removeItem} />
     </StyledLeftBox>
     <StyledRightBox>
       <Image src={illustrationUrl} alt="main illustration" />
